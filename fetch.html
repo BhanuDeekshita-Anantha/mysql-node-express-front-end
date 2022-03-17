@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+	   function time(){
+		fetch("http://localhost:2599/retrieve")
+		 .then((res)=>{
+		 	return res.json()
+		 })
+		 .then((convert)=>{
+            console.log(convert)
+		 })
+		}
+		/*function better(){
+			var name,age
+		   name=document.getElementById("name").value;
+		   age=document.getElementById("age").value;
+		  fetch(`http://localhost:2599/add?name=${name}&age=${age}`)
+		   .then((res)=>{
+		   	console.log(res)
+		   }) 	
+		} */
+
+		function better(){
+			var name,age
+		   name=document.getElementById("name").value;
+		   age=document.getElementById("age").value;
+		  fetch("http://localhost:2599/add",{
+		  	method:"POST",
+		  	headers:{
+		  		"Content-type":"application/json"
+		  	},
+		  	body:JSON.stringify({name:name,age:age})
+		  })
+		  .then((res)=>console.log(res))
+		  .catch((err)=>console.log(err))
+		}  
+	</script>
+</head>
+<body>
+	<input id="name"
+	       type="text"
+	       placeholder="Name"/></br>
+	<input id="age"
+	       type="text"
+	       placeholder="Age"/></br>
+   <button onclick="time()">click here to get values</button>
+   <button onclick="better()">Send</button>
+</body>
+</html>
